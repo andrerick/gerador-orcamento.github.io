@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Gerador de Orçamentos</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div class="screen-only">
+      <div class="topbar">
+        <div class="logo" id="logoBox">
+          <span id="logoInitials" style="display: none">PC</span
+          ><img
+            id="logoImg"
+            alt="Logo Papelaria Cunha"
+            style="height: 100%; width: auto; object-fit: contain"
+            onerror="
+              this.style.display = 'none';
+              document.getElementById('logoInitials').style.display = 'block';
+            "
+          />
+        </div>
+        <div>
+          <h1>Gerador de Orçamentos</h1>
+          <p>Papelaria Cunha - Comunicação Visual</p>
+        </div>
+      </div>
+
+      <main>
+        <div class="card">
+          <h2>Novo Orçamento</h2>
+          <p class="sub">Preencha os campos abaixo para gerar um orçamento.</p>
+
+          <section class="block">
+            <h3>Informações do Cliente</h3>
+            <div class="row">
+              <div class="field">
+                <label for="clientName">Nome do cliente:</label>
+                <input
+                  id="clientName"
+                  type="text"
+                  placeholder="Nome do cliente"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="field">
+                <label for="clientPhone">Telefone:</label>
+                <input
+                  id="clientPhone"
+                  type="text"
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
+              <div class="field">
+                <label for="quoteDate">Data do orçamento:</label>
+                <input id="quoteDate" type="date" />
+              </div>
+            </div>
+          </section>
+
+          <section class="block">
+            <h3>Itens do Orçamento</h3>
+            <div class="table-wrap">
+              <table class="items">
+                <thead>
+                  <tr>
+                    <th>Descrição</th>
+                    <th>Tamanho</th>
+                    <th>Qtd.</th>
+                    <th>Valor Unit. (R$)</th>
+                    <th>Subtotal (R$)</th>
+                    <th>Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="itemsBody"></tbody>
+              </table>
+            </div>
+            <button type="button" class="add-btn" id="addItemBtn">
+              + Adicionar Item
+            </button>
+            <div class="total-line">
+              <label for="totalValue">Valor Total:</label>
+              <input id="totalValue" type="text" readonly value="R$ 0,00" />
+            </div>
+          </section>
+
+          <section class="block">
+            <h3>Observações</h3>
+            <textarea
+              id="obs"
+              placeholder="Digite alguma observação, se necessário..."
+            ></textarea>
+          </section>
+
+          <div class="actions">
+            <button type="button" class="btn-primary" id="generateBtn">
+              Gerar Orçamento
+            </button>
+            <button type="button" class="btn-secondary" id="clearBtn">
+              Limpar Campos
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <div class="appfooter">
+        Papelaria Cunha - Comunicação Visual<br />
+        Rua Bom Jesus, Nº 48, Centro<br />
+        Central de Minas - MG | Telefone: (33) 98872-7612
+      </div>
+    </div>
+
+    <div id="printArea">
+      <div class="doc">
+        <div class="doc-head">
+          <div class="doc-logo" id="docLogoBox">
+            <span id="docLogoInitials" style="display: none">PC</span
+            ><img
+              id="docLogoImg"
+              alt="Logo Papelaria Cunha"
+              style="height: 100%; width: auto; object-fit: contain"
+              onerror="
+                this.style.display = 'none';
+                document.getElementById('docLogoInitials').style.display =
+                  'block';
+              "
+            />
+          </div>
+          <div class="doc-company">
+            <div class="name">Papelaria Cunha - Comunicação Visual</div>
+            <div>Rua Bom Jesus, Nº 48, Centro</div>
+            <div>Central de Minas - MG</div>
+            <div>Telefone: (33) 98872-7612</div>
+          </div>
+        </div>
+        <div class="doc-row"><span class="client" id="pClient"></span></div>
+        <div class="doc-date" id="pDate"></div>
+        <p>
+          Prezado(a) cliente, segue abaixo nossa proposta para sua avaliação.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Descrição</th>
+              <th>Tamanho</th>
+              <th>Qtd.</th>
+              <th>Valor Unit.</th>
+              <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody id="pItems"></tbody>
+        </table>
+        <div class="doc-obs">
+          <strong>Observações</strong>
+          <div>
+            Confira todos os dados antes da aprovação; alguns itens não poderão
+            ser alterados após a confirmação do pedido.
+          </div>
+          <div id="pObsExtra"></div>
+        </div>
+        <div class="doc-total" id="pTotal"></div>
+        <div class="doc-terms">
+          <div class="r">
+            <span><strong>Vendedor:</strong> Direto</span
+            ><span><strong>Validade da proposta:</strong> 7 dias</span>
+          </div>
+          <div class="r">
+            <span><strong>Prazo de entrega:</strong> A combinar</span>
+          </div>
+        </div>
+        <p class="doc-close">
+          Ficamos à disposição para esclarecer qualquer dúvida.
+          Atenciosamente,<br />Papelaria Cunha - Comunicação Visual
+        </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
